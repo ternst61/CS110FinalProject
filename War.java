@@ -14,10 +14,14 @@ public class War
    
    private ArrayList<Card> warCardsTotal = new ArrayList<Card>();
    
-   private int INITIAL_HAND = 26;
+   private int INITIAL_HAND = 25;
    
    private Card playerOneCard;
    private Card playerTwoCard;
+   
+   private String outcome; 
+   
+   private final String image_path = "cards/";
    
    
    public War()
@@ -76,6 +80,9 @@ public class War
          System.out.println("Player One card: " + playerOneCard.toString());
          System.out.println("Player Two card: " + playerTwoCard.toString());
          System.out.println("Player One wins!\n");
+         
+         outcome = ("Player One wins!");
+         
          System.out.println("Player One has " + playerOneHand.getSize() + " cards.");
          System.out.println("Player Two has " + playerTwoHand.getSize() + " cards.\n");
 
@@ -99,6 +106,9 @@ public class War
          System.out.println("Player One card: " + playerOneCard.toString());
          System.out.println("Player Two card: " + playerTwoCard.toString());
          System.out.println("Player Two wins!\n");
+         
+         outcome = ("Player Two wins!");
+         
          System.out.println("Player One has " + playerOneHand.getSize() + " cards.");
          System.out.println("Player Two has " + playerTwoHand.getSize() + " cards.\n");
          
@@ -112,15 +122,26 @@ public class War
          System.out.println("Player One card: " + playerOneCard.toString());
          System.out.println("Player Two card: " + playerTwoCard.toString());
          System.out.println("War!");
+         outcome = ("WAR!\n Each player puts down three cards...");
          
          tieWar(playerOneCard, playerTwoCard);
          
          return "WAR";
       }
-      
-     
-      
    }
+      
+   /**
+      getOutcome method
+      
+      @return the outcome of each hand
+   */
+   
+   public String getOutcome()
+   {
+      return outcome;
+   }
+      
+   
    
    /**
       tieWar method
@@ -154,12 +175,12 @@ public class War
       
       if (warRound == "p1WIN")
       {
-         System.out.println("Player one wins!");
+         System.out.println("WAR!\nPlayer one wins!\n");
       }
       
       if (warRound == "p2WIN")
       {
-         System.out.println("Player two wins!");
+         System.out.println("WAR!\nPlayer two wins!\n");
       }
       
    }
@@ -213,6 +234,47 @@ public class War
    {
       return playerTwoHand.getSize();
    }
+   
+   /**
+      getCurrentPlayerOneCard
+      @return the card in play for player one
+   */
+   
+   public Card getCurrentPlayerOneCard()
+   {
+      return playerOneCard;
+   }
+   
+   /**
+      getCurrentPlayerTwoCard
+      @return the card in play for player two
+   */
+   
+   public Card getCurrentPlayerTwoCard()
+   {
+      return playerTwoCard;
+   }
+   
+    /**
+      getPlayerOneImage
+      @return the image in play for player two
+   */
+   
+   public String getPlayerOneImage()
+   {
+      return image_path+playerOneCard.getImageName();
+   }
+   
+       /**
+      getPlayerTwoImage
+      @return the image in play for player two
+   */
+   
+   public String getPlayerTwoImage()
+   {
+      return image_path+playerTwoCard.getImageName();
+   }
+      
       
    /** endGame method
    
@@ -223,11 +285,13 @@ public class War
       if (player.equals("two"))
       {
          System.out.println("Player One has all the cards. Game over! Player One wins.");
+         outcome = ("Player One has all the cards. Game over! Player One wins.");
       }
       
       if (player.equals("one"))
       {
          System.out.println("Player Two has all the cards. Game over! Player Two wins.");
+         outcome = ("Player Two has all the cards. Game over! Player Two wins.");
       }
    }
          

@@ -11,7 +11,7 @@ public class Card
     // suits
    public final static int SPADES = 0,
                            HEARTS = 1,
-                           DIAMONDS = 2,
+                           DIAMONDS =2,
                            CLUBS = 3;
     // ranks
     // Cards 2 through 9 have face value
@@ -23,6 +23,8 @@ public class Card
     // SPADES, HEARTS, DIAMONDS, CLUBS.
    
       private int rank; // The rank of this card, from 1 to 13.
+      
+      private String imageName;    //for GUI images 
    
     /**
     * Creates a new playing card.
@@ -33,7 +35,19 @@ public class Card
     {
       this.rank = rank;
       this.suit = suit;
+      
+      imageName = "cards/" + rank + suit + ".jpg";
     }
+    
+    /** 
+      getImageName
+      @return the image name for GUI
+    */
+    public String getImageName()
+    {
+      return imageName;
+    }
+    
     /**
     * Returns the suit of the card.
     * @return a Suit constant representing the suit value of the card.
