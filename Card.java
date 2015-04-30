@@ -36,6 +36,7 @@ public class Card
       this.rank = rank;
       this.suit = suit;
       
+      // create image name
       imageName = "cards/" + rank + suit + ".jpg";
     }
     

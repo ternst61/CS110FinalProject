@@ -3,9 +3,7 @@
    CS110
    War Game GUI
 */
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -30,10 +28,7 @@ public class WarGUI extends JFrame
    private ImageIcon cardBack;           // card back image
    private ImageIcon p1Card;      // player one current card image
    private ImageIcon p2Card;      // player two current card image
-   
-   private JLabel player1Score;    //player one score
-   private JLabel player2Score;    //player two score
-   
+      
    private JLabel player1Deck;     //player one deck
    private JLabel player2Deck;     //player two deck
    
@@ -64,21 +59,12 @@ public class WarGUI extends JFrame
       setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
       validate();
       
-      //get card image for back of card
-      try
-      {
-         cardBack = new ImageIcon(ImageIO.read(new File("cards/back.jpg")));  
-      }
-      catch(IOException e)
-      {
-         System.err.println("card not found");
-      } 
-      
+
       //set title bar
       setTitle("A game of WAR");  
       
-      //call buildPanels method
-      buildPanels();
+      //call createPanels method
+      createPanels();
       
       //so we can see everything
       setVisible(true);
@@ -89,35 +75,34 @@ public class WarGUI extends JFrame
    }
    
    /**
-      buildPanels method
+      createPanels method
       
       this method builds the top, bottom, player one and player two panels
    */
-   private void buildPanels()
+   private void createPanels()
    {
       //create deck labels
       player1Deck = new JLabel();
+      player1Deck.setText("Player One");
+      player1Deck.setFont(new Font("AVENIR",Font.BOLD,24));
+      player1Deck.setVerticalTextPosition(JLabel.BOTTOM);
+      player1Deck.setHorizontalTextPosition(JLabel.CENTER);
+      
       player2Deck = new JLabel();
+      player2Deck.setText("Player Two");
+      player2Deck.setFont(new Font("AVENIR",Font.BOLD,24));
+      player2Deck.setVerticalTextPosition(JLabel.BOTTOM);
+      player2Deck.setHorizontalTextPosition(JLabel.CENTER);
       
       //create card labels
       player1Card = new JLabel();
       player2Card = new JLabel();
-      
-      //create score labels
-      player1Score = new JLabel();
-      player1Score.setFont(new Font("ARIAL",Font.BOLD,24));
- 
-      player2Score = new JLabel();
-      player2Score.setFont(new Font("ARIAL",Font.BOLD,24));
-
       
       
       //create player one panel and add elements
       player1Panel = new JPanel();
       player1Panel.setPreferredSize(new Dimension(400,450));
       
-      
-      player1Panel.add(player1Score);
       player1Panel.add(player1Deck);
       player1Panel.add(player1Card);
       player1Panel.setBackground(Color.green);
@@ -126,7 +111,6 @@ public class WarGUI extends JFrame
       player2Panel = new JPanel();
       player2Panel.setPreferredSize(new Dimension(400,450));
 
-      player2Panel.add(player2Score);
       player2Panel.add(player2Deck);
       player2Panel.add(player2Card);
       player2Panel.setBackground(Color.green);
@@ -146,7 +130,7 @@ public class WarGUI extends JFrame
       topPanel = new JPanel();
       
       status = new JLabel();
-      status.setFont(new Font("ARIAL",Font.BOLD,24));
+      status.setFont(new Font("AVENIR",Font.BOLD,24));
      
       topPanel.add(status);
       topPanel.setBackground(Color.orange);
@@ -204,7 +188,7 @@ public class WarGUI extends JFrame
    */
    public void update()
    {
-      updateCardImages();
+      updateCardBacks();
       updateOutcome();
       updateScores();
    }
@@ -213,8 +197,10 @@ public class WarGUI extends JFrame
       updates the back of the card image
       image goes away when there are no cards left
    */
-   public void updateCardImages()
+   public void updateCardBacks()
    {
+      cardBack = new ImageIcon("cards/back.jpg");
+      
       //player one card backs
       if (game.getPlayerOneCardsLeft() != 0)
       {
@@ -260,14 +246,22 @@ public class WarGUI extends JFrame
       int play1Score = game.getPlayerOneCardsLeft();
       
       //set text
-      player1Score.setText(String.valueOf(play1Score));
+      player1Card.setText(String.valueOf(play1Score)+" cards");
+      player1Card.setFont(new Font("AVENIR",Font.BOLD,24));
+
+      player1Card.setVerticalTextPosition(JLabel.BOTTOM);
+      player1Card.setHorizontalTextPosition(JLabel.CENTER);
+
       
       //get player two score
       int play2Score = game.getPlayerTwoCardsLeft();
       
       //set text
-      player2Score.setText(String.valueOf(play2Score));
-      //player2Score.setText(String.valueOf(game.getPlayerTwoCardsLeft()));
+      player2Card.setText(String.valueOf(play2Score)+" cards");
+      player2Card.setVerticalTextPosition(JLabel.BOTTOM);
+      player2Card.setHorizontalTextPosition(JLabel.CENTER);
+      player2Card.setFont(new Font("AVENIR",Font.BOLD,24));
+
    } 
    
    

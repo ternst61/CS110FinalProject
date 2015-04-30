@@ -42,7 +42,7 @@ public class QueueReferenceBased  implements QueueInterface{
          is returned 
       @throws QueueException if the operation is impossible
   */  
-  public Object dequeue() throws QueueException {
+  public Object dequeue()    throws QueueException {
     if (!isEmpty()) {
       // queue is not empty; remove front
       Node firstNode = lastNode.getNext();
@@ -64,7 +64,7 @@ public class QueueReferenceBased  implements QueueInterface{
       @throws QueueException if the operation is impossible
   */
 
-  public Object peek() throws QueueException {
+  public Object peek()   throws QueueException {
     if (!isEmpty()) {
       // queue is not empty; retrieve front
       Node firstNode = lastNode.getNext();
