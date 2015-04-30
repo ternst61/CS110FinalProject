@@ -58,9 +58,12 @@ public class War
       
       plays one round of the game
       
+      @param playerOneCard player one's card
+      @param playerTwoCard player two's card
+      
       @return p1WIN if player one wins
-              p2WIN if player two wins
-              WAR if cards are equal
+      @return p2WIN if player two wins
+      @return WAR if cards are equal
    */
    
    public String playRound(Card playerOneCard, Card playerTwoCard)
@@ -148,6 +151,10 @@ public class War
       tieWar method
       
       each player draws three cards, the third is turned up to determine winner
+      
+      @param playerOneCard player one's card from playRound
+      @param playerTwoCard player two's card from playRound
+       
    */
    
    public void tieWar(Card playerOneCard, Card playerTwoCard)
@@ -310,6 +317,8 @@ public class War
       
       
    /** endGame method
+   
+      @param player the winner of the game
    
       prints out statement showing who has won the game
    */
